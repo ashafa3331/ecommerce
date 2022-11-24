@@ -1,5 +1,7 @@
 import { Exclude } from "class-transformer";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CartEntity } from "src/cart/Entity/cart.entity";
+import { OrderEntity } from "src/order/entities/order.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -27,11 +29,12 @@ export class User {
    updtedAt : String
    
 
-//    @OneToMany(type => CartEntity, cart => cart.id)
-//    @JoinColumn()
-//    cart: CartEntity[]
+   @OneToMany(type => CartEntity, cart => cart.id)
+   @JoinColumn()
+   cart: CartEntity[]
 
-//    @OneToOne(type => OrderEntity, order => order.id)
-//    @JoinColumn()
-//    order : OrderEntity;
+   @OneToOne(type => OrderEntity, order => order.id)
+   @JoinColumn()
+   order : OrderEntity;
+
 }
